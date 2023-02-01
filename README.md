@@ -2,10 +2,11 @@
 
 ## 🚀 ¿Que es Redux? - Resumen.
 
-Permite manejar el 'State' de una aplicacion, para que sea mas facil mantener conforme va creciendo. 
+Permite manejar el 'State' de una aplicacion, para que sea mas facil mantener conforme va creciendo.
 Tambien te ayuda a manejar los datos, conforme el Usuario realiza diferentes acciones.
 
 ## Caracteristicas de Redux.
+
 - Solo se tiene un State principal.
 - El State cambia de acuerdo a lo que sucede en la interfaz de Usuario.
 - Solo ciertas funciones cambian el State.
@@ -21,7 +22,7 @@ Tambien te ayuda a manejar los datos, conforme el Usuario realiza diferentes acc
 - Dispatch: Ejecuta una Accion que actualizara el State.
 - Action: Son Objetos (js), tienen un Tipo y un Payload (Datos).
 - Subscribe: Similar a un Event Listener para el State.
-- Reducers: Funciones, saben que hacer con las Acciones y el Payload. 
+- Reducers: Funciones, saben que hacer con las Acciones y el Payload.
 
 ![image](https://user-images.githubusercontent.com/24545141/140233398-09735dd7-71aa-4cc0-926b-3710d0b59045.png)
 
@@ -41,3 +42,21 @@ npm i
 ```sh
 npm start
 ```
+
+## Desarrollo de Front-End
+
+### Walter Alfonso: recurso `product`
+
+- Acceso a los métodos CRUD - MongoDB:
+
+1. -> \_DashBoard
+   ![Dasboard](https://raw.githubusercontent.com/bonino97/FE-MCGA/products/src/assets/dashboard.png)
+
+2. -> _Productos - Lista de todos los productos_
+   ![List Products](https://raw.githubusercontent.com/bonino97/FE-MCGA/products/src/assets/products.png)
+
+3. -> _Productos - Agregar producto_
+   ![Add Product](https://raw.githubusercontent.com/bonino97/FE-MCGA/products/src/assets/addProduct.png)
+
+4. -> _Productos - Actualizar datos del producto_
+5. -> _Productos - Borrar producto_
