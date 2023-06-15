@@ -10,6 +10,9 @@ import Header from './shared/Header';
 import Sidebar from './shared/Sidebar';
 import Dashboard from './components/Dashboard';
 import Footer from './shared/Footer';
+import NoFoundPage from './shared/NoFoundPage';
+import Login from './components/Users/Login';
+
 // Components - Clients branch
 import Clients from './components/Clients';
 import NewClient from './components/Clients/NewClient';
@@ -22,18 +25,22 @@ import EditProduct from './components/Products/EditProduct';
 import Suppliers from './components/Suppliers';
 import NewSupplier from './components/Suppliers/NewSupplier';
 import EditSupplier from './components/Suppliers/EditSupplier';
+import Navigation from './components/Navigation/Navigation';
 //
 
 function App() {
   return (
     <Router>
       <Header />
+
       <Provider store={store}>
         <div className='flex'>
+
           <Sidebar />
           <div className='mainOptions'>
             <Switch>
               <Route exact path='/' component={Dashboard} />
+              <Route exact path='/login' component={Login} />
               <Route exact path='/clients' component={Clients} />
               <Route exact path='/clients/new' component={NewClient} />
               <Route exact path='/clients/edit/:id' component={EditClient} />
@@ -43,6 +50,7 @@ function App() {
               <Route exact path='/suppliers' component={Suppliers} />
               <Route exact path='/suppliers/new' component={NewSupplier} />
               <Route exact path='/suppliers/edit/:id' component={EditSupplier} />
+              <Route path='*' component={NoFoundPage} />
             </Switch>
           </div>
         </div>
