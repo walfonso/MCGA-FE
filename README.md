@@ -60,3 +60,5 @@ npm start
 
 4. -> _Productos - Actualizar datos del producto_
 5. -> _Productos - Borrar producto_
+
+CRUD Usuarios
