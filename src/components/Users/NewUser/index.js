@@ -55,7 +55,7 @@ const NewUser = ({ history }) => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Nombre del Cliente"
+                  placeholder="Nombre del Usuario"
                   name="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
