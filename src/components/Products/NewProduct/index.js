@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { addNewProductAction } from "../../../store/actions/productsActions";
 
 const NewProduct = ({ history }) => {
@@ -42,7 +41,8 @@ const NewProduct = ({ history }) => {
     addNewProduct(product);
 
     // Redireccionar a la lista de Productos
-    history.push("/products");
+    //history.push("/products");
+    window.location = "/products";
   };
 
   return (
