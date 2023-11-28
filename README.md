@@ -1,4 +1,4 @@
-# FE-MCGA
+# PRESENTACIÓN FINAL DE MCGA
 
 ## 🚀 ¿Que es Redux? - Resumen.
 
