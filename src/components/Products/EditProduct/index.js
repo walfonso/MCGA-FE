@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { editProductAction } from '../../../store/actions/productsActions';
+import { editProductAction } from "../../../store/actions/productsActions";
 const EditProduct = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const [productState, setProduct] = useState({
-    _id: '',
+    _id: "",
     name: "",
     price: "",
     detail: "",
@@ -20,7 +20,7 @@ const EditProduct = () => {
     setProduct(product);
   }, [product]);
 
-  if (!productState) return history.push('/');
+  if (!productState) return history.push("/");
 
   console.log(productState);
 
@@ -42,10 +42,10 @@ const EditProduct = () => {
 
     //Validar formulario.
     if (
-      name.trim() === '' ||
-      price === '' ||
-      detail.trim() === '' ||
-      category.trim() === ''
+      name.trim() === "" ||
+      price === "" ||
+      detail.trim() === "" ||
+      category.trim() === ""
     )
       return;
 
@@ -61,7 +61,7 @@ const EditProduct = () => {
 
     editProduct(product);
     // Redireccionar a la lista de clientes.
-    history.push('/products');
+    history.push("/products");
   };
 
   return (
@@ -138,7 +138,7 @@ const EditProduct = () => {
                 type="submit"
                 className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
               >
-                Agregar
+                Guardar
               </button>
             </form>
             {loading ? <p> Loading... </p> : null}
