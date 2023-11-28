@@ -59,8 +59,24 @@ npm start
    ![Add Product](https://raw.githubusercontent.com/bonino97/FE-MCGA/products/src/assets/addProduct.png)
 
 4. -> _Productos - Actualizar datos del producto_
-   ![Edit Product](https://raw.githubusercontent.com/walfonso/MCGA-FE/development/src/assets/addProduct.png)
+   ![Edit Product](https://raw.githubusercontent.com/walfonso/MCGA-FE/development/src/assets/updateProduct.png)
 
 5. -> _Productos - Borrar producto_
 
 CRUD Usuarios
+
+1. -> _Usuarios - Lista de todos los usuarios_
+   ![List Products](https://raw.githubusercontent.com/walfonso/MCGA-FE/development/src/assets/users.png)
+
+2. -> _Usuarios - Agregar usuario_
+   ![Add Product](https://raw.githubusercontent.com/walfonso/MCGA-FE/development//src/assets/addUser.png)
+
+3. -> _Productos - Actualizar datos del producto_
+   ![Edit Product](https://raw.githubusercontent.com/walfonso/MCGA-FE/development/src/assets/updateProduct.png)
+
+4. -> _Usuarios - Borrar usuario_
+
+LOGIN Usuarios
+
+1. -> _Acceso Usuarios - Login usuario_
+   ![Edit Product](https://raw.githubusercontent.com/walfonso/MCGA-FE/development/src/assets/login.png)
