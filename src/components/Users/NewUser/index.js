@@ -69,7 +69,7 @@ const NewUser = ({ history }) => {
                 <input
                   type="email"
                   className="form-control"
-                  placeholder="Email del Cliente"
+                  placeholder="Email del Usuario"
                   name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
