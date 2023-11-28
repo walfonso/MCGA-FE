@@ -1,102 +1,100 @@
-import { useState } from 'react';
-import { Grid, Container, Paper, Avatar, Typography, TextField, Button, CssBaseline } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { LockOutlined as LockOutlinedIcon } from '@material-ui/icons';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { loginUserAction, logout } from "../../../store/actions/authActions";
+import { useSelector } from "react-redux";
 
-const useStyles = makeStyles(theme => ({
-    root: {
-        backgroundImage: `url(${process.env.PUBLIC_URL + '/images/login.jpg'})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        height: '100vh'
-    },
-    container: {
-        opacity: '0.8',
-        height: '60%',
-        marginTop: theme.spacing(10),
-        [theme.breakpoints.down(400 + theme.spacing(2) + 2)]: {
-            marginTop: 0,
-            width: '100%',
-            height: '100%'
-        }
-    },
-    div: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center'
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.primary.main
-    },
-    form: {
-        width: '100%',
-        marginTop: theme.spacing(1)
-    },
-    button: {
-        margin: theme.spacing(3, 0, 2)
+const Login = () => {
+  // states
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // Redux state
+  const { loading, message, users } = useSelector((state) => state.users);
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const handleLogoutEvent = () => {
+    dispatch(logout());
+  };
+
+  const handleLoginEvent = (e) => {
+    e.preventDefault();
+    const user = {
+      email,
+      password,
+    };
+
+    try {
+      dispatch(loginUserAction(user));
+      history.push("/products");
+
+      //console.log("AUTORIZADO", loginSuccess(user));
+    } catch (error) {
+      console.error(error);
+      //     history.push("/users/login");
     }
-}))
-export default function Login() {
-    const [body, setBody] = useState({ nickname: '', password: '' })
-    const classes = useStyles()
+  };
 
+  return (
+    <div className="row justify-content-center">
+      <div className="col-md-8 p-4">
+        <div className="card">
+          <div className="card-body">
+            <h2 className="text-center mb-4 font-weight-bold">
+              Inicio de Sesión
+            </h2>
+            <form className="form-group">
+              <div className="form-group">
+                <label>
+                  Usuario <span className="text-danger"></span>
+                </label>
+                <input
+                  type="email"
+                  placeholder="ingrese email"
+                  className="form-control"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label>
+                  Contraseña <span className="text-danger"></span>
+                </label>
+                <input
+                  type="password"
+                  placeholder="Ingrese contraseña"
+                  className="form-control"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <button
+                type="button"
+                className="btn btn-success btn-md"
+                onClick={handleLoginEvent}
+              >
+                Login
+              </button>
+              <button
+                type="button"
+                className="btn btn-success btn-md"
+                onClick={handleLogoutEvent}
+              >
+                Logout
+              </button>
 
-    const handleChange = e => {
-        setBody({
-            ...body,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    const onSubmit = () => {
-        console.log(body)
-    }
-    return (
-        <Grid container component='main' className={useStyles.root}>
-            <CssBaseline />
-            <Container component={Paper} elevation={5} maxWidth='xs' className={useStyles.container}>
-                <div className={useStyles.div}>
-                    <Avatar className={useStyles.avatar}>
-                        <LockOutlinedIcon />
-                    </Avatar>
-                    <Typography component='h1' variant='h5'>Sign In</Typography>
-                    <form className={useStyles.form}>
-                        <TextField
-                            fullWidth
-                            autoFocus
-                            color='primary'
-                            margin='normal'
-                            variant='outlined'
-                            label='Nickname'
-                            name='nickname'
-                            value={body.nickname}
-                            onChange={handleChange}
-                        />
-                        <TextField
-                            fullWidth
-                            type='password'
-                            color='primary'
-                            margin='normal'
-                            variant='outlined'
-                            label='Password'
-                            name='password'
-                            value={body.password}
-                            onChange={handleChange}
-                        />
-                        <Button
-                            fullWidth
-                            variant='contained'
-                            color='secondary'
-                            className={classes.button}
-                            onClick={() => onSubmit()}
-                        >
-                            Sign In
-                        </Button>
-                    </form>
+              {message && (
+                <div className="alert alert-danger" role="alert">
+                  {message}
                 </div>
-            </Container>
-        </Grid>
-    )
-}
+              )}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default Login;
