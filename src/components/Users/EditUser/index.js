@@ -119,7 +119,7 @@ const EditUser = () => {
                 type="submit"
                 className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
               >
-                Agregar
+                Guardar
               </button>
             </form>
             {loading ? <p> Loading... </p> : null}
