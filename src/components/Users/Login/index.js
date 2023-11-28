@@ -33,7 +33,7 @@ const Login = () => {
       //console.log("AUTORIZADO", loginSuccess(user));
     } catch (error) {
       console.error(error);
-      //     history.push("/users/login");
+      //history.push("/users/login");
     }
   };
 
@@ -75,16 +75,8 @@ const Login = () => {
                 className="btn btn-success btn-md"
                 onClick={handleLoginEvent}
               >
-                Login
+                Aceptar
               </button>
-              <button
-                type="button"
-                className="btn btn-success btn-md"
-                onClick={handleLogoutEvent}
-              >
-                Logout
-              </button>
-
               {message && (
                 <div className="alert alert-danger" role="alert">
                   {message}
