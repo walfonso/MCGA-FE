@@ -59,7 +59,7 @@ npm start
    ![Add Product](https://raw.githubusercontent.com/bonino97/FE-MCGA/products/src/assets/addProduct.png)
 
 4. -> _Productos - Actualizar datos del producto_
-   ![Edit Product](https://raw.githubusercontent.com/walfonso/MCGA/products/src/assets/addProduct.png)
+   ![Edit Product](https://raw.githubusercontent.com/walfonso/MCGA-FE/products/src/assets/addProduct.png)
 
 5. -> _Productos - Borrar producto_
 
