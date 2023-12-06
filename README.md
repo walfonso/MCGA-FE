@@ -37,11 +37,6 @@ cd MCGA-FE
 npm i
 ```
 
-## Vista Online
-
-View the hosted on [Heroku] (https://dbmarket2023-1d0af4cbfaaf.herokuapp.com/)
-
-
 ## ¿Como correr Localmente la Aplicacion?
 
 ```sh
@@ -89,7 +84,6 @@ LOGIN Usuarios
 
 1. -> _Acceso Usuarios - Login usuario_
    ![Edit Product](https://raw.githubusercontent.com/walfonso/MCGA-FE/development/src/assets/login.png)
-
 
 ## Walter Alfonso
 
