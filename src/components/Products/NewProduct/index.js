@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Redirect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewProductAction } from "../../../store/actions/productsActions";
 
@@ -42,7 +42,8 @@ const NewProduct = ({ history }) => {
 
     // Redireccionar a la lista de Productos
     //history.push("/products");
-    window.location = "/products";
+    //<Redirect to="/products" />;
+    //window.location = "/products";
   };
 
   return (

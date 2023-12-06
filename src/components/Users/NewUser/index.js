@@ -35,6 +35,8 @@ const NewUser = ({ history }) => {
     addNewUser(user);
 
     // Redireccionar a la lista de Usuarios.
+    console.log("history");
+    console.log(history);
     history.push("/users");
   };
 

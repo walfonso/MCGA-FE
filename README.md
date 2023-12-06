@@ -30,9 +30,9 @@ Tambien te ayuda a manejar los datos, conforme el Usuario realiza diferentes acc
 
 ```sh
 
-git clone git@github.com:bonino97/FE-MCGA.git
+git clone https://github.com/walfonso/MCGA-FE.git
 
-cd FE-MCGA
+cd MCGA-FE
 
 npm i
 ```
@@ -42,6 +42,10 @@ npm i
 ```sh
 npm start
 ```
+
+## Vista Online
+
+View the hosted on [Heroku] (https://dbmarket2023-1d0af4cbfaaf.herokuapp.com/)
 
 ## Desarrollo de Front-End
 
