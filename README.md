@@ -90,6 +90,7 @@ LOGIN Usuarios
 1. -> _Acceso Usuarios - Login usuario_
    ![Edit Product](https://raw.githubusercontent.com/walfonso/MCGA-FE/development/src/assets/login.png)
 
-Walter Alfonso
 
-© Año 2023
+## Walter Alfonso
+
+## © Año 2023
