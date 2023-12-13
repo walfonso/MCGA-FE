@@ -5,7 +5,6 @@ import { editProductAction } from "../../../store/actions/productsActions";
 const EditProduct = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-
   const [productState, setProduct] = useState({
     _id: "",
     name: "",
@@ -15,14 +14,11 @@ const EditProduct = () => {
   });
 
   const { loading, error, product } = useSelector((state) => state?.products);
-
   useEffect(() => {
     setProduct(product);
   }, [product]);
 
   if (!productState) return history.push("/");
-
-  console.log(productState);
 
   const { name, price, detail, category } = productState;
 
@@ -37,10 +33,6 @@ const EditProduct = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    console.log(e.target.value);
-
-    //Validar formulario.
     if (
       name.trim() === "" ||
       price === "" ||
@@ -49,8 +41,6 @@ const EditProduct = () => {
     )
       return;
 
-    //Si no hay errores.
-    //Crear Cliente.
     const product = {
       _id: productState._id,
       name,
@@ -60,7 +50,6 @@ const EditProduct = () => {
     };
 
     editProduct(product);
-    // Redireccionar a la lista de clientes.
     history.push("/products");
   };
 
