@@ -6,7 +6,6 @@ import { editUserAction } from "../../../store/actions/usersActions";
 const EditUser = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-
   const [userState, setUser] = useState({
     _id: "",
     name: "",
@@ -22,12 +21,8 @@ const EditUser = () => {
 
   if (!userState) return history.push("/");
 
-  console.log(userState);
-
   const { name, email, password } = userState;
-
   const onFormChange = (e) => {
-    console.log(e.target.value);
     setUser({
       ...userState,
       [e.target.name]: e.target.value,
@@ -35,16 +30,11 @@ const EditUser = () => {
   };
 
   const editUser = (user) => dispatch(editUserAction(user));
-
   const onSubmit = (e) => {
     e.preventDefault();
-
-    //Validar formulario.
     if (name.trim() === "" || email.trim() === "" || password.trim() === "")
       return;
 
-    //Si no hay errores.
-    //Crear Usuario.
     const user = {
       _id: userState._id,
       name,
@@ -53,7 +43,6 @@ const EditUser = () => {
     };
 
     editUser(user);
-    // Redireccionar a la lista de usuarios
     history.push("/users");
   };
 

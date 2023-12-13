@@ -1,31 +1,56 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { addNewUserAction } from "../../../store/actions/usersActions";
 
 const NewUser = ({ history }) => {
-  // useState Se utiliza para setear los valores en los campos del formulario.
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  // Permite utilziar los dispatch.
+  const validateName = () => {
+    if (name.trim() === "") {
+      setNameError("El nombre es requerido");
+      return false;
+    }
+    setNameError("");
+    return true;
+  };
+
+  const validateEmail = () => {
+    // Puedes usar una expresión regular para validar el formato del correo electrónico.
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setEmailError("El correo electrónico no es válido");
+      return false;
+    }
+    setEmailError("");
+    return true;
+  };
+
+  const validatePassword = () => {
+    if (password.trim() === "") {
+      setPasswordError("La contraseña es requerida");
+      return false;
+    }
+    setPasswordError("");
+    return true;
+  };
+
   const dispatch = useDispatch();
-
-  // Acceder al state del Store! [!IMPORTANTE!]
   const { loading, error } = useSelector((state) => state.users);
-
-  // Llama el action.
   const addNewUser = (user) => dispatch(addNewUserAction(user));
-
   const onSubmit = (e) => {
     e.preventDefault();
-    //Validar formulario.
+    const isNameValid = validateName();
+    const isEmailValid = validateEmail();
+    const isPasswordValid = validatePassword();
+
     if (name.trim() === "" || email.trim() === "" || password.trim() === "")
       return;
 
-    //Si no hay errores.
-    //Crear Usuario.
     const user = {
       name,
       email,
@@ -33,10 +58,6 @@ const NewUser = ({ history }) => {
     };
 
     addNewUser(user);
-
-    // Redireccionar a la lista de Usuarios.
-    console.log("history");
-    console.log(history);
     history.push("/users");
   };
 
@@ -56,12 +77,18 @@ const NewUser = ({ history }) => {
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className={`form-control ${nameError ? "is-invalid" : ""}`}
                   placeholder="Nombre del Usuario"
                   name="name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    setNameError("");
+                  }}
                 />
+                {nameError && (
+                  <div className="invalid-feedback">{nameError}</div>
+                )}
               </div>
 
               <div className="form-group">
@@ -70,12 +97,18 @@ const NewUser = ({ history }) => {
                 </label>
                 <input
                   type="email"
-                  className="form-control"
+                  className={`form-control ${emailError ? "is-invalid" : ""}`}
                   placeholder="Email del Usuario"
                   name="email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setEmailError("");
+                  }}
                 />
+                {emailError && (
+                  <div className="invalid-feedback">{emailError}</div>
+                )}
               </div>
 
               <div className="form-group">
@@ -84,12 +117,20 @@ const NewUser = ({ history }) => {
                 </label>
                 <input
                   type="password"
-                  className="form-control"
+                  className={`form-control ${
+                    passwordError ? "is-invalid" : ""
+                  }`}
                   placeholder="Telefono del Cliente"
                   name="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                    setPasswordError("");
+                  }}
                 />
+                {passwordError && (
+                  <div className="invalid-feedback">{passwordError}</div>
+                )}
               </div>
 
               <div className="form-group text-center">

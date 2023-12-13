@@ -3,15 +3,12 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { loginUserAction, logout } from "../../../store/actions/authActions";
 import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  // states
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // Redux state
-  const { loading, message, users } = useSelector((state) => state.users);
-
+  const { message } = useSelector((state) => state.users);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -19,8 +16,25 @@ const Login = () => {
     dispatch(logout());
   };
 
+  const isValidEmail = (value) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(value);
+  };
+  const isValidPassword = (value) => {
+    return value.length >= 6;
+  };
+
   const handleLoginEvent = (e) => {
     e.preventDefault();
+    if (email.trim() === "" || password.trim() === "") return;
+    if (!isValidEmail(email) || !isValidPassword(password)) {
+      Swal.fire({
+        icon: "error",
+        title: "Error de validación",
+        text: "Por favor, ingrese un email y una contraseña válidos.",
+      });
+      return;
+    }
     const user = {
       email,
       password,
@@ -29,11 +43,8 @@ const Login = () => {
     try {
       dispatch(loginUserAction(user));
       history.push("/products");
-
-      //console.log("AUTORIZADO", loginSuccess(user));
     } catch (error) {
       console.error(error);
-      //history.push("/users/login");
     }
   };
 
