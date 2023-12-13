@@ -18,23 +18,16 @@ import {
 
 const userUrl = "/user";
 
-// Crear Nuevo Usuario.
 export function addNewUserAction(user) {
   return async (dispatch) => {
     dispatch(addNewUser());
     try {
-      // Primero intenta cargar un cliente. Cargando = True.
       await axiosClient.post(`${userUrl}`, user);
-      // Si lo agrega correctamente, dispara la accion con el objeto de cliente cargado correctamente.
       dispatch(addNewUserSuccess(user));
-
-      // Alerta exitosa.
       Swal.fire("Correcto", "El usuario se agrego correctamente...", "success");
     } catch (error) {
       console.error(error);
-      // Si falla, envia una notificacion de error.
       dispatch(addNewUserError(true));
-      // Alerta de error.
       Swal.fire({
         icon: "error",
         title: "Ocurrio un error.",
@@ -48,19 +41,16 @@ const addNewUser = () => ({
   type: ADD_USER,
 });
 
-// Si el usuario se guarda en la base de datos.
 const addNewUserSuccess = (user) => ({
   type: ADD_USER_SUCCESS,
   payload: user,
 });
 
-// Si ocurre un error en el guardado del usuario.
 const addNewUserError = (status) => ({
   type: ADD_USER_ERROR,
   payload: status,
 });
 
-// Obtener todos los Usuarios.
 export function getAllUsersAction() {
   return async (dispatch) => {
     dispatch(getAllUsers());
@@ -88,7 +78,6 @@ const getAllUsersError = (status) => ({
   payload: status,
 });
 
-// Eliminar Usuario.
 export const deleteUserAction = (id) => {
   return async (dispatch) => {
     dispatch(deleteUser());
@@ -126,21 +115,15 @@ const deleteUserError = (status) => ({
   payload: status,
 });
 
-// Editar usuario.
 export const editUserAction = (user) => {
   return async (dispatch) => {
     try {
-      // Primero intenta cargar un usuario. Cargando = True.
       await axiosClient.put(`${userUrl}/${user?._id}`, user);
-      // Si lo agrega correctamente, dispara la accion con el objeto de usuario cargado correctamente.
       dispatch(editUserSuccess(user));
       dispatch(getAllUsersAction());
-      // Alerta exitosa.
       Swal.fire("Correcto", "El usuario se edito correctamente...", "success");
     } catch (error) {
-      // Si falla, envia una notificacion de error.
       dispatch(editUserError(true));
-      // Alerta de error.
       Swal.fire({
         icon: "error",
         title: "Ocurrio un error.",

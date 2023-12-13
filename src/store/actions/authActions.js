@@ -1,5 +1,5 @@
 import axiosClient from "../../config/axios";
-import { LOGOUT, LOGIN} from "../../types/auth";
+import { LOGOUT, LOGIN } from "../../types/auth";
 
 const userUrl = "/user";
 
@@ -14,27 +14,21 @@ export const logout = () => {
   };
 };
 
-
-
-
-///
 export const loginUserAction = (dataUser) => {
   console.log("dataUser", dataUser);
   return async (dispatch) => {
     try {
       const response = await axiosClient.post(`${userUrl}/login`, dataUser);
-      const user = response.data; // Assuming the API returns the user object
+      const user = response.data;
 
       console.log(user);
       if (user.success) {
-        // localStorage.setItem("user", JSON.stringify(user));
         dispatch(
           loginUser(user.payload.email, user.payload.name, user.payload.token)
         );
         console.log("AUTORIZADO", user.payload.name);
       }
     } catch (error) {
-      console.log("NO AUTORIZADO");
       console.error("DIO ERROR ", error);
     }
   };
