@@ -1,36 +1,64 @@
-import React, { useState, Redirect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewProductAction } from "../../../store/actions/productsActions";
 
 const NewProduct = ({ history }) => {
-  // useState Se utiliza para setear los valores en los campos del formulario
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [detail, setDetail] = useState("");
   const [category, setCategory] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [priceError, setPriceError] = useState("");
+  const [detailError, setDetailError] = useState("");
+  const [categoryError, setCategoryError] = useState("");
 
-  // Permite utilziar los dispatch
   const dispatch = useDispatch();
-
-  // Acceder al state del Store! [!IMPORTANTE!]
   const { loading, error } = useSelector((state) => state.products);
-
-  // Llama el action
   const addNewProduct = (product) => dispatch(addNewProductAction(product));
+  const categories = ["Alimentos", "Bebidas", "Limpieza", "Bazar"];
+
+  const validateForm = () => {
+    let isValid = true;
+    if (name.trim() === "") {
+      setNameError("El nombre es requerido");
+      isValid = false;
+    } else {
+      setNameError("");
+    }
+
+    if (price.trim() === "") {
+      setPriceError("El precio es requerido");
+      isValid = false;
+    } else if (isNaN(parseFloat(price))) {
+      setPriceError("El precio debe ser un valor numérico");
+      isValid = false;
+    } else {
+      setPriceError("");
+    }
+
+    if (detail.trim() === "") {
+      setDetailError("El detalle es requerido");
+      isValid = false;
+    } else {
+      setDetailError("");
+    }
+
+    if (category.trim() === "") {
+      setCategoryError("La categoría es requerida");
+      isValid = false;
+    } else {
+      setCategoryError("");
+    }
+
+    return isValid;
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    //Validar formulario
-    if (
-      name.trim() === "" ||
-      price.trim() === "" ||
-      detail.trim() === "" ||
-      category.trim() === ""
-    )
+    if (!validateForm()) {
       return;
+    }
 
-    //Si no hay errores
-    //Crear Producto
     const product = {
       name,
       price,
@@ -39,11 +67,7 @@ const NewProduct = ({ history }) => {
     };
 
     addNewProduct(product);
-
-    // Redireccionar a la lista de Productos
     history.push("/products");
-
-    //window.location = "/products";
   };
 
   return (
@@ -62,12 +86,18 @@ const NewProduct = ({ history }) => {
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className={`form-control ${nameError ? "is-invalid" : ""}`}
                   placeholder="Nombre del Producto"
                   name="name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    setNameError("");
+                  }}
                 />
+                {nameError && (
+                  <div className="invalid-feedback">{nameError}</div>
+                )}
               </div>
 
               <div className="form-group">
@@ -76,40 +106,65 @@ const NewProduct = ({ history }) => {
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className={`form-control ${priceError ? "is-invalid" : ""}`}
                   placeholder="Precio del Producto"
                   name="price"
                   value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  onChange={(e) => {
+                    setPrice(e.target.value);
+                    setPriceError("");
+                  }}
                 />
+                {priceError && (
+                  <div className="invalid-feedback">{priceError}</div>
+                )}
               </div>
-
               <div className="form-group">
                 <label>
                   Detalle <span className="text-danger">*</span>
                 </label>
                 <input
                   type="text"
-                  className="form-control"
+                  className={`form-control ${detailError ? "is-invalid" : ""}`}
                   placeholder="Detalle del Producto"
                   name="detail"
-                  value={detail}
-                  onChange={(e) => setDetail(e.target.value)}
+                  onChange={(e) => {
+                    setDetail(e.target.value);
+                    setDetailError("");
+                  }}
                 />
+                {detailError && (
+                  <div className="invalid-feedback">{detailError}</div>
+                )}
               </div>
 
               <div className="form-group">
                 <label>
                   Categoria <span className="text-danger">*</span>
                 </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Categoria del Producto"
+                <select
+                  className={`form-control ${
+                    categoryError ? "is-invalid" : ""
+                  }`}
                   name="category"
                   value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                />
+                  onChange={(e) => {
+                    setCategory(e.target.value);
+                    setCategoryError("");
+                  }}
+                >
+                  <option value="" disabled>
+                    Seleccione una categoría
+                  </option>
+                  {categories.map((cat) => (
+                    <option key={cat} value={cat}>
+                      {cat}
+                    </option>
+                  ))}
+                </select>
+                {categoryError && (
+                  <div className="invalid-feedback">{categoryError}</div>
+                )}
               </div>
 
               <div className="form-group text-center">
