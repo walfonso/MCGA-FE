@@ -11,12 +11,9 @@ import {
 const Product = ({ product }) => {
   const { _id, name, price, detail, category } = product;
   const dispatch = useDispatch();
-  const history = useHistory(); // Habilitar history para redireccionar.
-
+  const history = useHistory();
   const user = useSelector((state) => state.authState);
   const onDeleteProduct = (id) => {
-    // Is login
-
     if (user.email) {
       // preguntar al usuario
       Swal.fire({
@@ -52,20 +49,24 @@ const Product = ({ product }) => {
       <td>{detail}</td>
       <td>{category}</td>
       <td className="actions">
-        <button
-          type="button"
-          onClick={() => onEditRedirection(_id)}
-          className="btn btn-primary m-1"
-        >
-          Editar
-        </button>
-        <button
-          type="button"
-          className="btn btn-danger m-1"
-          onClick={() => onDeleteProduct(_id)}
-        >
-          Eliminar
-        </button>
+        {user.email && (
+          <>
+            <button
+              type="button"
+              onClick={() => onEditRedirection(_id)}
+              className="btn btn-primary m-1"
+            >
+              Editar
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger m-1"
+              onClick={() => onDeleteProduct(_id)}
+            >
+              Eliminar
+            </button>
+          </>
+        )}
       </td>
     </tr>
   );
