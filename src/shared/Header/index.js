@@ -10,6 +10,7 @@ const Header = () => {
   const handleLogoutEvent = () => {
     dispatch(logout());
   };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary  justify-content-between">
       <div className="container">
