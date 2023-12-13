@@ -107,14 +107,20 @@ const EditProduct = () => {
 
               <div className="form-group">
                 <label>Categoria</label>
-                <textarea
-                  type="text"
+                <select
                   className="form-control"
-                  placeholder="Categoria del Producto"
                   name="category"
                   value={category}
                   onChange={onFormChange}
-                ></textarea>
+                >
+                  <option value="" disabled>
+                    Seleccione una categoría
+                  </option>
+                  <option value="Alimentos">Alimentos</option>
+                  <option value="Bebidas">Bebidas</option>
+                  <option value="Limpieza">Limpieza</option>
+                  <option value="Bazar">Bazar</option>
+                </select>
               </div>
 
               <div className="form-group text-center">
