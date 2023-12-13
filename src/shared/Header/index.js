@@ -1,15 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
 import { useDispatch } from "react-redux";
-
-import { loginUserAction, logout } from "../../store/actions/authActions";
+import { logout } from "../../store/actions/authActions";
 
 const Header = () => {
   const auth = useSelector((state) => state.authState);
   const dispatch = useDispatch();
-  console.log("email: ", auth.email);
   const handleLogoutEvent = () => {
     dispatch(logout());
   };
@@ -34,7 +31,6 @@ const Header = () => {
             "Iniciar sesión"
           )}
         </Link>
-        
       </div>
     </nav>
   );
